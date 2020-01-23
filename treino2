@@ -1,0 +1,52 @@
+1) /*Obtenha o nome dos fornecedores que fornecem alguma
+peça vermelha.*/
+
+select f.fnome
+from fornecedores as f join pecas as p
+on p.cor = 'Vermelho'
+
+2)/*Obtenha o nome dos fornecedores que fornecem alguma
+peça que custe 100 ou 150.*/
+
+select f.fnome
+from fornecedores as f join catalogo as c
+on f.fid = c.fid and(c.preco = 100 or c.preco = 150)
+
+3)/*Obtenha o fid dos fornecedores que fornecem alguma
+peça vermelha ou que custe 150*/
+
+select f.fid
+from fornecedores as f join pecas as p
+on p.cor = 'Vermelho' 
+join catalogo as c
+on f.fid = c.fid and c.preco = 150
+
+4)/*Obtenha o fid dos fornecedores que fornecem alguma
+peça vermelha e alguma peça verde.*/
+
+select f.fid
+from fornecedores as f join pecas as p
+on p.cor = 'Verde' and p.cor = 'Vermelho'
+
+5)/*Obtenha o nome dos fornecedores que fornecem alguma
+peça vermelha que tenha preço abaixo de 100.*/
+ 
+select f.fnome
+from fornecedores as f join pecas as p
+on p.cor = 'Verde'
+join catalogo as c
+on f.fid = c.fid and c.preco < 100
+
+6)/*Obtenha o nome das peças que possuem algum
+fornecedor.*/
+ 
+select p.pnome
+from pecas as p join catalogo as c
+on p.pid = c.pid and fid is not null
+
+7)/*Obtenha o nome dos fornecedores que fornecem todas
+as peças..*/
+
+select f.fnome
+from fornecedores as f join catalogo as c 
+on f.fid = c.fid and c.pid is not null
